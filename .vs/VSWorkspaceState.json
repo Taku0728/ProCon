@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ARC"
+    "\\CPP",
+    "\\CPP\\ARC"
   ],
-  "SelectedNode": "\\ARC\\ARC001-D.cpp",
+  "SelectedNode": "\\CPP\\ARC",
   "PreviewInSolutionExplorer": false
 }
