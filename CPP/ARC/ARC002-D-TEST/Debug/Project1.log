@@ -1,0 +1,4 @@
+﻿  Source.cpp
+c:\users\zly07\source\repos\project1\source.cpp(21): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
+c:\users\zly07\source\repos\project1\source.cpp(57): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
+  Project1.vcxproj -> c:\users\zly07\source\repos\Project1\Debug\Project1.exe
