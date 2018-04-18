@@ -205,20 +205,20 @@ int main() {
 	input();
 	ans = solve1();
 	if (ans == 1) {
-		cout << "o";
+		cout << "o" << endl;
 		return 0;
 	}
 	else if (ans == 2) {
-		cout << "x";
+		cout << "x" << endl;
 		return 0;
 	}
 	solve2();
 	solve3();
 	if (solve4() == 1) {
-		cout << "o";
+		cout << "o" << endl;
 	}
 	else {
-		cout << "x";
+		cout << "x" << endl;
 	}
 	return 0;
 }
