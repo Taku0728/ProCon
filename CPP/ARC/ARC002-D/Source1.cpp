@@ -132,7 +132,7 @@ void solve3() {
 		B[value[n][1]][value[n][2] - 1] = '.';
 		B[value[n][1]][value[n][2]] = 'o';
 		++n;
-		if (n >= leg) {
+		if (n == leg) {
 			break;
 		}
 		B[value[n][1]][value[n][2] + 2] = '.';
@@ -147,31 +147,65 @@ int solve4() {
 	int timesx(0);
 	for (int i(0); i < H; ++i) {
 		int j(0);
+		int layer(0);
 		while (j < W) {
-			if (B[i][j] == 'o' && B[i][j + 1] == '.' && B[i][j + 2] != 'x') {
-				B[i][j] = '.';
-				B[i][j + 1] = 'o';
-				++timeso;
-				j -= 2;
+			if (B[i][j] == 'o') {
+				++layer;
+			}
+			else if (B[i][j] == '.') {
+				timeso += layer;
+			}
+			else {
+				if (layer) {
+					timeso -= layer;
+					layer = 0;
+				}
 			}
 			++j;
 		}
-		j = 0;
-		while (j < W) {
-			if (B[i][W - j - 1] == 'x' && B[i][W - j - 2] == '.' && B[i][W - j - 3] != 'o') {
-				B[i][W - j - 1] = '.';
-				B[i][W - j - 2] = 'x';
-				++timesx;
-				j -= 2;
+		j = W - 1;
+		while (j >= 0) {
+			if (B[i][j] == 'x') {
+				++layer;
 			}
-			++j;
+			else if (B[i][j] == '.') {
+				timesx += layer;
+			}
+			else {
+				if (layer) {
+					timesx -= layer;
+					layer = 0;
+				}
+			}
+			--j;
 		}
+
+		//int j(0);
+		//while (j < W) {
+		//	if (B[i][j] == 'o' && B[i][j + 1] == '.' && B[i][j + 2] != 'x') {
+		//		B[i][j] = '.';
+		//		B[i][j + 1] = 'o';
+		//		++timeso;
+		//		j -= 2;
+		//	}
+		//	++j;
+		//}
+		//j = 0;
+		//while (j < W) {
+		//	if (B[i][W - j - 1] == 'x' && B[i][W - j - 2] == '.' && B[i][W - j - 3] != 'o') {
+		//		B[i][W - j - 1] = '.';
+		//		B[i][W - j - 2] = 'x';
+		//		++timesx;
+		//		j -= 2;
+		//	}
+		//	++j;
+		//}
 	}
-	if (timesx > timeso) {
-		return 2;
+	if (timesx < timeso) {
+		return 1;
 	}
 	else {
-		return 1;
+		return 2;
 	}
 }
 
