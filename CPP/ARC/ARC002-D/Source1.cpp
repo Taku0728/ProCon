@@ -106,8 +106,8 @@ void solve2() {
 						}
 					}
 					counto = 0;
-					dist = 0;
 				}
+				dist = 0;
 			}
 			else {
 				if (counto != 0) {
@@ -179,27 +179,6 @@ int solve4() {
 			}
 			--j;
 		}
-
-		//int j(0);
-		//while (j < W) {
-		//	if (B[i][j] == 'o' && B[i][j + 1] == '.' && B[i][j + 2] != 'x') {
-		//		B[i][j] = '.';
-		//		B[i][j + 1] = 'o';
-		//		++timeso;
-		//		j -= 2;
-		//	}
-		//	++j;
-		//}
-		//j = 0;
-		//while (j < W) {
-		//	if (B[i][W - j - 1] == 'x' && B[i][W - j - 2] == '.' && B[i][W - j - 3] != 'o') {
-		//		B[i][W - j - 1] = '.';
-		//		B[i][W - j - 2] = 'x';
-		//		++timesx;
-		//		j -= 2;
-		//	}
-		//	++j;
-		//}
 	}
 	if (timesx < timeso) {
 		return 1;
