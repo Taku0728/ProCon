@@ -14,10 +14,9 @@ int main() {
 	cin >> W;
 	int con(0);
 	for (int i(0); i < H; ++i) {
-		cout << ".";
 		cout << "o";
 		con = 1;
-		for (int j(0); j < W - 5; ++j) {
+		for (int j(0); j < W - 3; ++j) {
 			float t = rand100(rnd) / 100.0;
 			if (con == 0) {
 				if (t < 0.33) {
@@ -54,9 +53,8 @@ int main() {
 				}
 			}
 		}
-		float t = rand100(rnd) / 100.0;
-		cout << ".x";
-		cout << "." << endl;
+		cout << ".";
+		cout << "x\n";
 	}
 
 	return 0;
