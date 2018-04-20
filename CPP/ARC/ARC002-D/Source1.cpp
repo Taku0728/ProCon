@@ -174,15 +174,12 @@ int solve4() {
 			}
 			--j;
 		}
-<<<<<<< HEAD
-=======
 	}
 	if (timesx < timeso) {
 		return 1;
 	}
 	else {
 		return 2;
->>>>>>> 0202987a084fa6caa179e3df0073fa1bd49638cb
 	}
 	if (timesx < timeso) return 1;
 	else return 2;
