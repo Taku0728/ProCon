@@ -1,20 +1,27 @@
 #include <cstdio>
+#include <algorithm>
+#include <vector>
 using namespace std;
 
 int N;
-char line[402];
-int L[201];
+vector<int> L;
 
 void input() {
 	scanf_s("%d", &N);
-	scanf_s("%s", &line, 402);
 	for (int i(0); i < 2*N; ++i) {
-		
+		int t;
+		scanf_s("%d", &t);
+		L.emplace_back(t);
 	}
 }
 
 int main() {
 	input();
-	printf("%d", L[0]);
+	sort(L.begin(), L.end());
+	int sum(0);
+	for (int i(0); i < N; ++i) {
+		sum += L[2 * i];
+	}
+	printf("%d", sum);
 	return 0;
 }
