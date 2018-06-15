@@ -23,11 +23,5 @@
     <Text Include="Consideration.txt">
       <Filter>ソース ファイル</Filter>
     </Text>
-    <Text Include="backup.txt">
-      <Filter>ソース ファイル</Filter>
-    </Text>
-    <Text Include="backup2.txt">
-      <Filter>ソース ファイル</Filter>
-    </Text>
   </ItemGroup>
 </Project>
