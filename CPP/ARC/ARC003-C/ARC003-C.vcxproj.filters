@@ -15,7 +15,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ClCompile Include="Source.cpp">
+=======
+    <ClCompile Include="Source1.cpp">
+>>>>>>> parent of 2f3d61c... 1
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -23,5 +27,14 @@
     <Text Include="Consideration.txt">
       <Filter>ソース ファイル</Filter>
     </Text>
+<<<<<<< HEAD
+=======
+    <Text Include="backup.txt">
+      <Filter>ソース ファイル</Filter>
+    </Text>
+    <Text Include="backup2.txt">
+      <Filter>ソース ファイル</Filter>
+    </Text>
+>>>>>>> parent of 2f3d61c... 1
   </ItemGroup>
 </Project>
