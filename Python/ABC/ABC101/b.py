@@ -1,6 +1,10 @@
-import math
 N = int(input())
-a, b, c = [int(x) for x in input().split()] 
-T = [int(x) for x in input().split()]
-T = [[int(x) for x in input().split()] for i in range(N)]
-L = [int(input()) for i in range(N)]
+S = 0
+NN = N
+while N > 0:
+    S += N % 10
+    N = int(N / 10)
+if NN % S == 0:
+    print('Yes')
+else:
+    print('No')

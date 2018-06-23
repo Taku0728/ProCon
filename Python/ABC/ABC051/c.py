@@ -21,3 +21,4 @@ for i in range(ty - sy + 1):
     ss += 'D'
 ss += 'R'
 print(ss)
+# 46:00
