@@ -10,11 +10,9 @@
             "args": [
                 "-ggdb3",
                 "-std=c++17",
-                "Answer/source.cpp",
+                "source.cpp",
                 "-O3",
-                "-m32",
-                "-o",
-                "Answer/a.exe"
+                "-m32"
             ],
             "group": {
                 "kind": "build",

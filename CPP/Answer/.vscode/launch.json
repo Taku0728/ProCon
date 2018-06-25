@@ -8,12 +8,12 @@
             "name": "(lldb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/Answer/a.exe",
+            "program": "${workspaceFolder}/a.out",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/Answer",
+            "cwd": "${workspaceFolder}",
             "environment": [],
-            // "externalConsole": true,
+            "externalConsole": true,
             "MIMode": "lldb",
             "preLaunchTask": "echo"
         }

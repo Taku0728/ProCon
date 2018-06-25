@@ -1,4 +1,0 @@
-﻿  Source.cpp
-c:\users\zly07\source\repos\procon\cpp\answer\source.cpp(20): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
-c:\users\zly07\source\repos\procon\cpp\answer\source.cpp(44): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
-  Answer.vcxproj -> C:\Users\zly07\source\repos\ProCon\CPP\Answer\Debug\Answer.exe

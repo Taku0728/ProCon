@@ -17,6 +17,7 @@
         "list": "cpp",
         "xhash": "cpp",
         "chrono": "cpp",
-        "xiosbase": "cpp"
+        "xiosbase": "cpp",
+        "iosfwd": "cpp"
     }
 }
