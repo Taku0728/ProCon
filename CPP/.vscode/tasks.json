@@ -9,9 +9,9 @@
             "command": "clang++",
             "args": [
                 "-ggdb3",
-                "-std=c++17",
+                "-std=c++14",
                 "Answer/source.cpp",
-                "-O3",
+                "-O0",
                 "-m32",
                 "-o",
                 "Answer/a.exe"

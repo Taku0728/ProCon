@@ -9,12 +9,9 @@
 #include <algorithm>
 #include <deque>
 #include <queue>
-#include <map>
-#include <chrono>
 
 #define rep(i, m, n) for (int (i)(m); (i)<(n); ++(i))
-#define repr(i, m, n) for (int (i)(m - 1); (i)>=(n); --(i))
-#define repv(i, v) for (int (i)(0); (i)<(v.size()); ++(i))
+#define repv(i, v) for (unsigned (i)(0); (i)<(v.size()); ++(i))
 #define all(v) (v).begin(), (v).end()
 #define sortv(v) sort(all(v))
 #define sortgi(v) sort(all(v), greater<int>())
@@ -24,7 +21,6 @@
 
 using namespace std;
 using pii = pair<int, int>;
-using pss = pair<string, string>;
 using vi = vector<int>;
 using vvi = vector<vi>;
 using vvvi = vector<vvi>;
@@ -44,16 +40,6 @@ using pqll = priority_queue<ll>;
 using pqvi = priority_queue<vi>;
 using pqvll = priority_queue<vll>;
 
-auto chnow = [](){ return chrono::system_clock::now(); };
-auto chdis = [](auto a) { return chrono::duration_cast<chrono::milliseconds>(chnow() - a).count(); };
-
 int main(){
-    cin.tie(0);
-    ios_base::sync_with_stdio(false);
-
-    
-    auto start = chnow();
-
-    cout << chdis(start) << " milli sec \n";
     return 0;
 }

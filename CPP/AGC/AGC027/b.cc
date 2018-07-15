@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <vector>
 #include <utility>
@@ -9,12 +10,9 @@
 #include <algorithm>
 #include <deque>
 #include <queue>
-#include <map>
-#include <chrono>
 
 #define rep(i, m, n) for (int (i)(m); (i)<(n); ++(i))
-#define repr(i, m, n) for (int (i)(m - 1); (i)>=(n); --(i))
-#define repv(i, v) for (int (i)(0); (i)<(v.size()); ++(i))
+#define repv(i, v) for (unsigned (i)(0); (i)<(v.size()); ++(i))
 #define all(v) (v).begin(), (v).end()
 #define sortv(v) sort(all(v))
 #define sortgi(v) sort(all(v), greater<int>())
@@ -24,7 +22,6 @@
 
 using namespace std;
 using pii = pair<int, int>;
-using pss = pair<string, string>;
 using vi = vector<int>;
 using vvi = vector<vi>;
 using vvvi = vector<vvi>;
@@ -44,16 +41,58 @@ using pqll = priority_queue<ll>;
 using pqvi = priority_queue<vi>;
 using pqvll = priority_queue<vll>;
 
-auto chnow = [](){ return chrono::system_clock::now(); };
-auto chdis = [](auto a) { return chrono::duration_cast<chrono::milliseconds>(chnow() - a).count(); };
+ll GCD(ll a, ll b) {
+	ll c = max(a, b);
+	ll d = min(a, b);
+	while (c%d != 0) {
+		ll t = d;
+		d = c % d;
+		c = t;
+	}
+	return d;
+}
 
 int main(){
-    cin.tie(0);
-    ios_base::sync_with_stdio(false);
+	int T;
+	cin >> T;
+	vvll v;
+	rep(i, 0, T) { 
+		ll a, b, c, d;
+		cin >> a >> b >> c >> d;
+		v.push_back({a,b,c,d});
+	}
+	repv(i, v) {
+		ll a = v[i][0], b = v[i][1], c = v[i][2], d = v[i][3];
+		if (a < b || b > d) {
+			cout << "No" << endl;
+			continue;
+		}
+		else if (a%b == 0 && d%b == 1) {
+			 if (b - 1 > c) {
+				 cout << "No" << endl;
+				 continue;
+			 }
+		}
+		else if (d%b == 0) {
+			if (a%b > c) {
+				cout << "No" << endl;
+				continue;
 
-    
-    auto start = chnow();
-
-    cout << chdis(start) << " milli sec \n";
-    return 0;
+			} 
+		}
+		else {
+			ll G =GCD(b, d%b); 
+			if (b%G == 0) {
+				if (b - G > c) {
+					cout << "No" << endl;
+					continue;
+				}
+			}
+			else if (b - (b - a%b)%G > c ) {
+				cout << "No" << endl;
+				continue;
+			}
+		}
+		cout << "Yes" << endl;
+	}
 }

@@ -9,7 +9,7 @@
             "command": "clang++",
             "args": [
                 "-ggdb3",
-                "-std=c++17",
+                "-std=c++11",
                 "source.cpp",
                 "-O3",
                 "-m32"

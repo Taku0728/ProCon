@@ -6,12 +6,14 @@ def nsn(n):
         nn = int(nn / 10)
     return n / s
 
+
 def big(a):
     r = 1
     while a > 0:
         r *= 10
         a = int(a / 10)
     return r
+
 
 def clear(a, d):
     aa = a
@@ -24,6 +26,7 @@ def clear(a, d):
             b = False
             break
     return b
+
 
 K = int(input())
 T = [1]

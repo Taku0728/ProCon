@@ -1,5 +1,6 @@
 # N = int(input())
 
+
 def S(n):
     s = 0
     while n > 0:
@@ -7,12 +8,14 @@ def S(n):
         n = int(n / 10)
     return s
 
+
 def fni(i):
     a = 1
     while i > 0:
         a * 10
         i = int(i / 10)
     return a
+
 
 K = int(input())
 T = [1]
@@ -37,4 +40,3 @@ while len(T) < K:
 
 for i in T:
     print(i)
-

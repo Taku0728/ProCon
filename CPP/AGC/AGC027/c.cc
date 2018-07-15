@@ -10,11 +10,10 @@
 #include <deque>
 #include <queue>
 #include <map>
-#include <chrono>
 
 #define rep(i, m, n) for (int (i)(m); (i)<(n); ++(i))
 #define repr(i, m, n) for (int (i)(m - 1); (i)>=(n); --(i))
-#define repv(i, v) for (int (i)(0); (i)<(v.size()); ++(i))
+#define repv(i, v) for (unsigned (i)(0); (i)<(v.size()); ++(i))
 #define all(v) (v).begin(), (v).end()
 #define sortv(v) sort(all(v))
 #define sortgi(v) sort(all(v), greater<int>())
@@ -44,16 +43,41 @@ using pqll = priority_queue<ll>;
 using pqvi = priority_queue<vi>;
 using pqvll = priority_queue<vll>;
 
-auto chnow = [](){ return chrono::system_clock::now(); };
-auto chdis = [](auto a) { return chrono::duration_cast<chrono::milliseconds>(chnow() - a).count(); };
+map <pss, int> mp;
 
-int main(){
-    cin.tie(0);
-    ios_base::sync_with_stdio(false);
-
-    
-    auto start = chnow();
-
-    cout << chdis(start) << " milli sec \n";
-    return 0;
+int main() {
+	int n;
+	string s;
+	cin >> n;
+	cin >> s;
+	rep(i, 0, 1<<n) {
+		string s0, s1;
+		rep(j, 0, n) {
+			if (i>>j&1) {
+				s0 += s[j];
+			}
+		}
+		repr(j, n, 0) {
+			if (!(i>>j&1)) {
+				s1 += s[j];
+			}
+		}
+		++mp[pss(s0, s1)];
+	}
+	ll ans = 0;
+	rep(i, 0, 1<<n) {
+		string s0, s1;
+		rep(j, 0, n) {
+			if (i>>j&1) {
+				s0 += s[n + j];
+			}
+		}
+		repr(j, n, 0) {
+			if (!(i>>j&1)) {
+				s1 += s[n + j];
+			}
+		}
+		ans += mp[pss(s1, s0)];
+	}
+	cout << ans << endl;
 }

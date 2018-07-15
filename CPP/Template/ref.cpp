@@ -2,6 +2,8 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <utility>
+#include <map>
 
 #define rep(i, n, m) for (int(i)(n); (i)<(m);++(i))
 using namespace std;
@@ -67,4 +69,28 @@ int main() {
 	string s;
 	getline(cin, s);
 
+}
+
+template<class T>
+T GCD(T a, T b) {
+	T c = max(a, b);
+	T d = min(a, b);
+	while (c%d != 0) {
+		T t = d;
+		d = c % d;
+		c = t;
+	}
+	return d;
+}
+
+template<class T>
+T LCM(T a, T b) {
+		T c = max(a, b);
+	T d = min(a, b);
+	while (c%d != 0) {
+		T t = d;
+		d = c % d;
+		c = t;
+	}
+	return a * b / d;
 }

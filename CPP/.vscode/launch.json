@@ -13,7 +13,7 @@
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/Answer",
             "environment": [],
-            // "externalConsole": true,
+            "externalConsole": true,
             "MIMode": "lldb",
             "preLaunchTask": "echo"
         }

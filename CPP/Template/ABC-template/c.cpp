@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <vector>
 #include <utility>
@@ -9,12 +10,9 @@
 #include <algorithm>
 #include <deque>
 #include <queue>
-#include <map>
-#include <chrono>
 
 #define rep(i, m, n) for (int (i)(m); (i)<(n); ++(i))
-#define repr(i, m, n) for (int (i)(m - 1); (i)>=(n); --(i))
-#define repv(i, v) for (int (i)(0); (i)<(v.size()); ++(i))
+#define repv(i, v) for (unsigned (i)(0); (i)<(v.size()); ++(i))
 #define all(v) (v).begin(), (v).end()
 #define sortv(v) sort(all(v))
 #define sortgi(v) sort(all(v), greater<int>())
@@ -24,7 +22,6 @@
 
 using namespace std;
 using pii = pair<int, int>;
-using pss = pair<string, string>;
 using vi = vector<int>;
 using vvi = vector<vi>;
 using vvvi = vector<vvi>;
@@ -44,16 +41,46 @@ using pqll = priority_queue<ll>;
 using pqvi = priority_queue<vi>;
 using pqvll = priority_queue<vll>;
 
-auto chnow = [](){ return chrono::system_clock::now(); };
-auto chdis = [](auto a) { return chrono::duration_cast<chrono::milliseconds>(chnow() - a).count(); };
-
 int main(){
-    cin.tie(0);
-    ios_base::sync_with_stdio(false);
-
-    
-    auto start = chnow();
-
-    cout << chdis(start) << " milli sec \n";
-    return 0;
+	int n;
+	ll sum;
+	cin >> n;
+	string s;
+	cin >> s;
+	vi va(n);
+	repv(i, va) {
+		va.push_back(i);
+	}
+	while(1) {
+		bool flag = false;
+		rep (i, 0, n) {
+			if (va[n - i] == 2*n - i - 1) {
+				continue;
+			}
+			int t = va[n - i];
+			rep (j, 0, i + 1) {
+				va[n - j - i] = t;
+				++t;
+			}
+			flag = true;
+			break;
+		}
+		if (flag) {
+			string s0;
+			string s1;
+			int j = 0;
+			repv (i, s) {
+				if (va[j] == i) {
+					s0 += s[i];
+					++j;
+				}
+				else {
+					s1.insert(s1.begin(), s[i]);
+				}
+			}
+			if (s0 == s1) {
+				++sum;
+			}
+		}
+	}
 }

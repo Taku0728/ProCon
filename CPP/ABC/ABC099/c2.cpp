@@ -9,12 +9,9 @@
 #include <algorithm>
 #include <deque>
 #include <queue>
-#include <map>
-#include <chrono>
 
 #define rep(i, m, n) for (int (i)(m); (i)<(n); ++(i))
-#define repr(i, m, n) for (int (i)(m - 1); (i)>=(n); --(i))
-#define repv(i, v) for (int (i)(0); (i)<(v.size()); ++(i))
+#define repv(i, v) for (unsigned (i)(0); (i)<(v.size()); ++(i))
 #define all(v) (v).begin(), (v).end()
 #define sortv(v) sort(all(v))
 #define sortgi(v) sort(all(v), greater<int>())
@@ -24,7 +21,6 @@
 
 using namespace std;
 using pii = pair<int, int>;
-using pss = pair<string, string>;
 using vi = vector<int>;
 using vvi = vector<vi>;
 using vvvi = vector<vvi>;
@@ -44,16 +40,66 @@ using pqll = priority_queue<ll>;
 using pqvi = priority_queue<vi>;
 using pqvll = priority_queue<vll>;
 
-auto chnow = [](){ return chrono::system_clock::now(); };
-auto chdis = [](auto a) { return chrono::duration_cast<chrono::milliseconds>(chnow() - a).count(); };
+bool once(int i) {
+	int ii = i;
+	while (ii % 6 == 0) {
+		ii /= 6;
+	}
+	if (ii == 1) {
+		return true;
+	}
+	int ij = i;
+	while (ij % 9 == 0) {
+		ij /= 9;
+	}
+	if (ij == 1) {
+		return true;
+	}
+	return false;
+}
 
-int main(){
+class two {
+public:
+	int a;
+	int b;
+	two(int i, int j)
+	:a(i), b(j)
+	{};
+};
+
+bool operator>(const two &lhs, const two &rhs) {
+	return lhs.a > rhs.b;
+};
+
+int main() {
     cin.tie(0);
     ios_base::sync_with_stdio(false);
+	int n;
+	cin >> n;
+	vi T(1, 1);
+	vvi T0;
+	T0.push_back({1, 1});
 
-    
-    auto start = chnow();
-
-    cout << chdis(start) << " milli sec \n";
+	T.reserve(n);
+	int i = 1;
+	while (i != n) {
+		++i;
+		int t = 99999;
+		if (once(i)) {
+			t = 1;
+		}
+		else {
+			repv (j, T0) {
+				if (T0[j][0] > t) {
+					break;
+				}
+				t = min(t, T0[j][0] + T[i - T0[j][1] - 1]);
+			}
+		}
+		T.emplace_back(t);
+		T0.push_back({t, i});
+		sortv(T0);
+	}
+	cout << T[i - 1] << "\n";
     return 0;
 }

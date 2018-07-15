@@ -6,7 +6,7 @@ if m < 100:
 elif m <= 5000:
     vv = m / 100
 elif m <= 30000:
-    vv = km + 50
+    vv = km + 50s
 elif m <= 70000:
     vv = (m - 30000) / 5000 + 80
 else:
