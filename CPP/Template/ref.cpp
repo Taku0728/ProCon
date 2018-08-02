@@ -7,6 +7,7 @@
 
 #define rep(i, n, m) for (int(i)(n); (i)<(m);++(i))
 using namespace std;
+using ll = long long;
 
 // split(文字列, 区切り文字) //
 std::vector<std::string> split(const std::string &str, char sep)
@@ -60,17 +61,7 @@ int ctoi(const char c) {
     return c - '0';
 }
 
-int main() {
-
-    // 空白を含めた一列を読み込む //
-	int N;
-	cin >> N;
-	cin.ignore();
-	string s;
-	getline(cin, s);
-
-}
-
+// 最大公約数 //
 template<class T>
 T GCD(T a, T b) {
 	T c = max(a, b);
@@ -83,6 +74,7 @@ T GCD(T a, T b) {
 	return d;
 }
 
+// 最小公倍数 //
 template<class T>
 T LCM(T a, T b) {
 		T c = max(a, b);
@@ -93,4 +85,31 @@ T LCM(T a, T b) {
 		c = t;
 	}
 	return a * b / d;
+}
+
+// モジュラ逆数 //
+ll mod_inv(ll a, ll m) {
+    ll b(m), u(1), v(0);
+    while (b) {
+        ll t(a / b);
+        a -= t * b;
+        swap(a, b);
+        u -= t * v;
+        swap(u, v);
+    }
+    if (u < 0) {
+        u += m;
+    }
+    return u;
+}
+
+int main() {
+
+    // 空白を含めた一列を読み込む //
+	int N;
+	cin >> N;
+	cin.ignore();
+	string s;
+	getline(cin, s);
+
 }
