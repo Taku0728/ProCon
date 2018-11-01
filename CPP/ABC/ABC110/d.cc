@@ -44,32 +44,65 @@ using pqll = priority_queue<ll>;
 using pqvi = priority_queue<vi>;
 using pqvll = priority_queue<vll>;
 
-ll get_e(ll i, ll x) {
-	if (i == 1) {
-		return 5 * x;
+vll prime(ll n) {
+	vll p;
+	map<ll, ll> mp;
+	ll i = 2;
+	while (n != 1) {
+		while (n % i == 0) {
+			n /= i;
+			++mp[i];
+		}
+		++i;
 	}
-	else {
-		return (2*i + 1) * x;
+	for (auto j = mp.begin(); j != mp.end(); ++j) {
+		p.push_back(j->second);
 	}
+	return p;
+}
+
+// モジュラ逆数 //
+ll mod_inv(ll a, ll m) {
+    ll b(m), u(1), v(0);
+    while (b) {
+        ll t(a / b);
+        a -= t * b;
+        swap(a, b);
+        u -= t * v;
+        swap(u, v);
+    }
+    if (u < 0) {
+        u += m;
+    }
+    return u;
+}
+
+ll nCm(ll n, ll m, ll mod) {
+	ll a = 1;
+	m = min(n-m, m);
+	rep(i, 0, m) {
+		a *= n - i;
+		a %= mod;
+	}
+	rep(i, 1, m + 1) {
+		a *= mod_inv(i, mod);
+		a %= mod;
+	}
+	return a;
 }
 
 int main() {
-	vll x, s;
-	ll n, X;
-	cin >> n >> X;
-	x.push_back(0);
-	rep(i, 0, n) {
-		ll xx;
-		cin >> xx;
-		x.push_back(xx);
+	ll N, M;
+	cin >> N >> M;
+	vll p = prime(M);
+	ll a = 1;
+	ll mod = 1e9 + 7;
+	repv(i, p) {
+		// cout << p[i] << endl;
+		a *= nCm(p[i] + N - 1, N - 1, mod);
+		a %= mod;
 	}
-	s.push_back(0);
-	rep(i, 1, n) {
-		s.push_back(s[i - 1] + x[i]);
-	}
-	rep(k, 1, n + 1) {
-		rep(i, 1, n/k + 1) {
-			
-		}
-	}
+	cout << a << endl;
 }
+
+

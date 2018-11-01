@@ -37,39 +37,44 @@ using vvll = vector<vll>;
 using vb = vector<bool>;
 using vvb = vector<vb>;
 using vvvb = vector<vvb>;
-using vpii = vector<pii>;
 using pqi = priority_queue<int>;
 using pqd = priority_queue<double>;
 using pqll = priority_queue<ll>;
 using pqvi = priority_queue<vi>;
 using pqvll = priority_queue<vll>;
 
-ll get_e(ll i, ll x) {
-	if (i == 1) {
-		return 5 * x;
-	}
-	else {
-		return (2*i + 1) * x;
-	}
-}
+ll mod = 1e9 + 7;
 
 int main() {
-	vll x, s;
-	ll n, X;
-	cin >> n >> X;
-	x.push_back(0);
-	rep(i, 0, n) {
-		ll xx;
-		cin >> xx;
-		x.push_back(xx);
-	}
-	s.push_back(0);
-	rep(i, 1, n) {
-		s.push_back(s[i - 1] + x[i]);
-	}
-	rep(k, 1, n + 1) {
-		rep(i, 1, n/k + 1) {
-			
+	string s;
+	cin >> s;
+	ll n = 1;
+	ll a = 0;
+	ll ab = 0;
+	ll abc = 0;
+	repv(i, s) {
+		if (s[i] == 'A') {
+			a += n;
+			a %= mod;
+		}
+		else if (s[i] == 'B') {
+			ab += a;
+			ab %= mod;
+		}
+		else if (s[i] == 'C') {
+			abc += ab;
+			abc %= mod;
+		}
+		else if (s[i] == '?') {
+			abc += 2 * abc + ab;
+			abc %= mod;
+			ab += 2 * ab + a;
+			ab %= mod;
+			a += 2 * a + n;
+			a %= mod;
+			n *= 3;
+			n %= mod;
 		}
 	}
+	cout << abc << endl;
 }

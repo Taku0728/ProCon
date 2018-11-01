@@ -37,39 +37,60 @@ using vvll = vector<vll>;
 using vb = vector<bool>;
 using vvb = vector<vb>;
 using vvvb = vector<vvb>;
-using vpii = vector<pii>;
 using pqi = priority_queue<int>;
 using pqd = priority_queue<double>;
 using pqll = priority_queue<ll>;
 using pqvi = priority_queue<vi>;
 using pqvll = priority_queue<vll>;
 
-ll get_e(ll i, ll x) {
-	if (i == 1) {
-		return 5 * x;
+class pid{
+public:
+	int first;
+	double second; 
+	pid(int a, double b):first(a),second(b){
 	}
-	else {
-		return (2*i + 1) * x;
-	}
-}
+};
 
 int main() {
-	vll x, s;
-	ll n, X;
-	cin >> n >> X;
-	x.push_back(0);
-	rep(i, 0, n) {
-		ll xx;
-		cin >> xx;
-		x.push_back(xx);
+	int d, g;
+	vector<pid> v;
+	int tab[10][3];
+	cin >> d >> g;
+	rep(i, 0, d) {
+		int p, c;
+		cin >> p >> c;
+		tab[i][0] = p;
+		tab[i][1] = c;
+		tab[i][2] = 1;
+		v.push_back(pid(p, double(100*(i+1)*p+c)/p));
 	}
-	s.push_back(0);
-	rep(i, 1, n) {
-		s.push_back(s[i - 1] + x[i]);
-	}
-	rep(k, 1, n + 1) {
-		rep(i, 1, n/k + 1) {
-			
+	sort(all(v), [](pid &a, pid &b){ return a.second > b.second; });
+	int s = 0;
+	rep(i, 0, d) {
+		int loc = v[i].first;
+		if (g <= 100*(loc+1)*tab[loc][0] + tab[loc][1]) {
+			int m = 100;
+			rep(j, 0, d) {
+				if (tab[j][2] && g <= 100*(j+1)*tab[j][0] + tab[j][1]) {
+					int a = 0;
+					if (g % (100*(j+1)*tab[j][0]) == 0) {
+						a = g / (100*(j+1)*tab[j][0]);
+					}
+					else {
+						a = g / (100*(j+1)*tab[j][0]) + 1;
+					}
+					a = min(a, tab[j][0]);
+					m = min(m, a);
+				}
+			}
+			s += m;
+			break;
+		}
+		else {
+			g -= 100*(loc+1)*tab[loc][0] + tab[loc][1];
+			s += tab[loc][0];
+			tab[loc][2] = 0;
 		}
 	}
+	cout << s << endl;
 }

@@ -44,32 +44,40 @@ using pqll = priority_queue<ll>;
 using pqvi = priority_queue<vi>;
 using pqvll = priority_queue<vll>;
 
-ll get_e(ll i, ll x) {
-	if (i == 1) {
-		return 5 * x;
-	}
-	else {
-		return (2*i + 1) * x;
-	}
-}
+ll mod = 0;
 
 int main() {
-	vll x, s;
-	ll n, X;
-	cin >> n >> X;
-	x.push_back(0);
+	ll n;
+	cin >> n >> mod;
+	vector<ll> v(0);
 	rep(i, 0, n) {
-		ll xx;
-		cin >> xx;
-		x.push_back(xx);
+		ll a;
+		cin >> a;
+		a %= mod;
+		v.push_back(a);
 	}
-	s.push_back(0);
-	rep(i, 1, n) {
-		s.push_back(s[i - 1] + x[i]);
-	}
-	rep(k, 1, n + 1) {
-		rep(i, 1, n/k + 1) {
-			
+	ll sum(0);
+	vector<pllll> vs(0);
+	rep(i, 0, n) {
+		bool flag(false);
+		ll a = v[i];
+		repv(j, vs) {
+			vs[j].first += a;
+			vs[j].first %= mod;
+			if (vs[j].first == a) {
+				++vs[j].second;
+				flag = true;
+			}
+			if (vs[j].first == 0) {
+				sum += vs[j].second;
+			}
+		}
+		if (!flag) {
+			vs.push_back(pllll(a, 1));
+			if (a == 0) {
+				++sum;
+			}
 		}
 	}
+	cout << sum << endl;
 }

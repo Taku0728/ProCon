@@ -37,39 +37,43 @@ using vvll = vector<vll>;
 using vb = vector<bool>;
 using vvb = vector<vb>;
 using vvvb = vector<vvb>;
-using vpii = vector<pii>;
 using pqi = priority_queue<int>;
 using pqd = priority_queue<double>;
 using pqll = priority_queue<ll>;
 using pqvi = priority_queue<vi>;
 using pqvll = priority_queue<vll>;
 
-ll get_e(ll i, ll x) {
-	if (i == 1) {
-		return 5 * x;
+int main() {
+	string s;
+	cin >> s;
+	bool b = false;
+	bool b1 = false;
+	int l;
+	if (s[0] == 'A') {
+		rep(i, 2, s.size() - 1) {
+			if (s[i] == 'C') {
+				if (b1) {
+					b1 = false;
+					break;
+				}
+				l = i;
+				b1 = true;
+			}
+		}
+		if (b1) {
+			b = true;
+			rep(i, 1, s.size()) {
+				if (i != l && s[i] < 97) {
+					b = false;
+					break;
+				}
+			}
+		}
+	}
+	if (b) {
+		cout << "AC" << endl;
 	}
 	else {
-		return (2*i + 1) * x;
-	}
-}
-
-int main() {
-	vll x, s;
-	ll n, X;
-	cin >> n >> X;
-	x.push_back(0);
-	rep(i, 0, n) {
-		ll xx;
-		cin >> xx;
-		x.push_back(xx);
-	}
-	s.push_back(0);
-	rep(i, 1, n) {
-		s.push_back(s[i - 1] + x[i]);
-	}
-	rep(k, 1, n + 1) {
-		rep(i, 1, n/k + 1) {
-			
-		}
+		cout << "WA" << endl;
 	}
 }

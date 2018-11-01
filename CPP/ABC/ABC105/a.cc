@@ -44,32 +44,13 @@ using pqll = priority_queue<ll>;
 using pqvi = priority_queue<vi>;
 using pqvll = priority_queue<vll>;
 
-ll get_e(ll i, ll x) {
-	if (i == 1) {
-		return 5 * x;
+int main() {
+	int n, k;
+	cin >> n >> k;
+	if (n % k == 0) {
+		cout << 0 << endl;
 	}
 	else {
-		return (2*i + 1) * x;
-	}
-}
-
-int main() {
-	vll x, s;
-	ll n, X;
-	cin >> n >> X;
-	x.push_back(0);
-	rep(i, 0, n) {
-		ll xx;
-		cin >> xx;
-		x.push_back(xx);
-	}
-	s.push_back(0);
-	rep(i, 1, n) {
-		s.push_back(s[i - 1] + x[i]);
-	}
-	rep(k, 1, n + 1) {
-		rep(i, 1, n/k + 1) {
-			
-		}
+		cout << 1 << endl;
 	}
 }

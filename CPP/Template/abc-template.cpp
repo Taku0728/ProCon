@@ -14,7 +14,7 @@
 #define rep(i, m, n) for (int (i)(m); (i)<(n); ++(i))
 #define repr(i, m, n) for (int (i)(m - 1); (i)>=(n); --(i))
 #define repv(i, v) for (unsigned (i)(0); (i)<(v.size()); ++(i))
-#define all(v) (v).begin(), (v).end()
+#define all(v) begin(v), end(v)
 #define sortv(v) sort(all(v))
 #define sortgi(v) sort(all(v), greater<int>())
 #define sortgd(v) sort(all(v), greater<double>())

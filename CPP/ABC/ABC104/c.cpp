@@ -37,39 +37,48 @@ using vvll = vector<vll>;
 using vb = vector<bool>;
 using vvb = vector<vb>;
 using vvvb = vector<vvb>;
-using vpii = vector<pii>;
 using pqi = priority_queue<int>;
 using pqd = priority_queue<double>;
 using pqll = priority_queue<ll>;
 using pqvi = priority_queue<vi>;
 using pqvll = priority_queue<vll>;
 
-ll get_e(ll i, ll x) {
-	if (i == 1) {
-		return 5 * x;
-	}
-	else {
-		return (2*i + 1) * x;
-	}
-}
 
 int main() {
-	vll x, s;
-	ll n, X;
-	cin >> n >> X;
-	x.push_back(0);
-	rep(i, 0, n) {
-		ll xx;
-		cin >> xx;
-		x.push_back(xx);
+	int d, g;
+	int tab[10][2];
+	cin >> d >> g;
+	rep(i, 0, d) {
+		int p, c;
+		cin >> p >> c;
+		tab[i][0] = p;
+		tab[i][1] = c;
 	}
-	s.push_back(0);
-	rep(i, 1, n) {
-		s.push_back(s[i - 1] + x[i]);
-	}
-	rep(k, 1, n + 1) {
-		rep(i, 1, n/k + 1) {
-			
+	int m = 99999;
+	rep(i, 0, 1 << d) {
+		int gg = g;
+		int s = 0;
+		rep(j, 0, d) {
+			if (i >> j & 1) {
+				gg -= 100 * (j + 1) * tab[j][0] + tab[j][1];
+				s += tab[j][0];
+			}
 		}
+		if (gg > 0) {
+			repr(j, d, 0) {
+				if (!(i >> j & 1)) {
+					if (gg < 100 * (j + 1) * tab[j][0]) {
+						s += gg / (100 * (j + 1)) + (gg % (100 * (j + 1)) != 0);
+					}
+					else {
+						s = 99999;
+					}
+					break;
+				}
+			}
+		}
+		m = min(m, s);
 	}
+	cout << m << endl;
+
 }

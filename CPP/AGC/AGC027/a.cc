@@ -9,8 +9,10 @@
 #include <algorithm>
 #include <deque>
 #include <queue>
+#include <map>
 
 #define rep(i, m, n) for (int (i)(m); (i)<(n); ++(i))
+#define repr(i, m, n) for (int (i)(m - 1); (i)>=(n); --(i))
 #define repv(i, v) for (unsigned (i)(0); (i)<(v.size()); ++(i))
 #define all(v) (v).begin(), (v).end()
 #define sortv(v) sort(all(v))
@@ -21,6 +23,7 @@
 
 using namespace std;
 using pii = pair<int, int>;
+using pss = pair<string, string>;
 using vi = vector<int>;
 using vvi = vector<vi>;
 using vvvi = vector<vvi>;
@@ -34,27 +37,33 @@ using vvll = vector<vll>;
 using vb = vector<bool>;
 using vvb = vector<vb>;
 using vvvb = vector<vvb>;
+using vpii = vector<pii>;
 using pqi = priority_queue<int>;
 using pqd = priority_queue<double>;
 using pqll = priority_queue<ll>;
 using pqvi = priority_queue<vi>;
 using pqvll = priority_queue<vll>;
 
-int main(){
-	int N;
-	int a = -1, b = -1, sum = 0;
-	cin >> N;
-	rep(i, 0, N) {
-		cin >> a;
-		if (a == b) {
-			++sum;
-			++i;
-			cin >> b;
+int main() {
+	int n, x;
+	cin >> n >> x;
+	int sum = 0;
+	vi a;
+	rep(i, 0, n) {
+		int aa;
+		cin >> aa;
+		a.push_back(aa);
+	}
+	sort(all(a));
+	rep(i, 0, a.size() - 1) {
+		x -= a[i];
+		if (x < 0) {
+			break;
 		}
-		else {
-			b = a;
-		}
+		++sum;
+	}
+	if (x == a[a.size() - 1]) {
+		++sum;
 	}
 	cout << sum << endl;
-    return 0;
 }

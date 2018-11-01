@@ -44,32 +44,39 @@ using pqll = priority_queue<ll>;
 using pqvi = priority_queue<vi>;
 using pqvll = priority_queue<vll>;
 
-ll get_e(ll i, ll x) {
-	if (i == 1) {
-		return 5 * x;
+template<class T>
+T GCD(T a, T b) {
+	T c = max(a, b);
+	T d = min(a, b);
+	while (c%d != 0) {
+		T t = d;
+		d = c % d;
+		c = t;
 	}
-	else {
-		return (2*i + 1) * x;
-	}
+	return d;
 }
 
 int main() {
-	vll x, s;
-	ll n, X;
-	cin >> n >> X;
-	x.push_back(0);
+	int n, x;
+	cin >> n >> x;
+	int a, b, t;
 	rep(i, 0, n) {
-		ll xx;
-		cin >> xx;
-		x.push_back(xx);
-	}
-	s.push_back(0);
-	rep(i, 1, n) {
-		s.push_back(s[i - 1] + x[i]);
-	}
-	rep(k, 1, n + 1) {
-		rep(i, 1, n/k + 1) {
-			
+		if (i == 0) {
+			cin >> a;
+			a = abs(a - x);
+			t = a;
+			continue;
 		}
+		if (i == 1) {
+			cin >> b;
+			b = abs(b - x);
+			t = GCD(a, b);
+			continue;
+		}
+		int c;
+		cin >> c;
+		c = abs(c - x);
+		t = GCD(t, c);
 	}
+	cout << t << endl;
 }

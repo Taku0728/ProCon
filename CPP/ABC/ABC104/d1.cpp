@@ -37,39 +37,67 @@ using vvll = vector<vll>;
 using vb = vector<bool>;
 using vvb = vector<vb>;
 using vvvb = vector<vvb>;
-using vpii = vector<pii>;
 using pqi = priority_queue<int>;
 using pqd = priority_queue<double>;
 using pqll = priority_queue<ll>;
 using pqvi = priority_queue<vi>;
 using pqvll = priority_queue<vll>;
 
-ll get_e(ll i, ll x) {
-	if (i == 1) {
-		return 5 * x;
-	}
-	else {
-		return (2*i + 1) * x;
-	}
+ll mod_inv(ll a, ll m) {
+    ll b(m), u(1), v(0);
+    while (b) {
+        ll t(a / b);
+        a -= t * b;
+        swap(a, b);
+        u -= t * v;
+        swap(u, v);
+    }
+    if (u < 0) {
+        u += m;
+    }
+    return u;
 }
 
+const ll mod = 1e9 + 7;
+
+struct mll {
+  ll n;
+  mll(ll n = 0) : n(n) {}
+};
+ 
+mll operator+(mll a, mll b) { return (a.n += b.n) >= mod ? a.n - mod : a.n; }
+mll operator-(mll a, mll b) { return (a.n -= b.n) < 0 ? a.n + mod : a.n; }
+mll operator*(mll a, mll b) { return 1LL * a.n * b.n % mod; }
+mll operator/(mll a, mll b) { return 1LL * a.n * mll(mod_inv(a.n, mod)); }
+mll &operator+=(mll &a, mll b) { return a = a + b; }
+mll &operator-=(mll &a, mll b) { return a = a - b; }
+mll &operator*=(mll &a, mll b) { return a = a * b; }
+mll &operator/=(mll &a, mll b) { return a = a / b; }
+ostream &operator<<(ostream &o, mll a) { return o << a.n; }
+
 int main() {
-	vll x, s;
-	ll n, X;
-	cin >> n >> X;
-	x.push_back(0);
-	rep(i, 0, n) {
-		ll xx;
-		cin >> xx;
-		x.push_back(xx);
-	}
-	s.push_back(0);
-	rep(i, 1, n) {
-		s.push_back(s[i - 1] + x[i]);
-	}
-	rep(k, 1, n + 1) {
-		rep(i, 1, n/k + 1) {
-			
+	string s;
+	cin >> s;
+	mll n = 1;
+	mll a = 0;
+	mll ab = 0;
+	mll abc = 0;
+	repv(i, s) {
+		if (s[i] == 'A') {
+			a += n;
+		}
+		else if (s[i] == 'B') {
+			ab += a;
+		}
+		else if (s[i] == 'C') {
+			abc += ab;
+		}
+		else if (s[i] == '?') {
+			abc += 2 * abc + ab;
+			ab += 2 * ab + a;
+			a += 2 * a + n;
+			n *= 3;
 		}
 	}
+	cout << abc << endl;
 }

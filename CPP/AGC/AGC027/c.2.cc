@@ -44,32 +44,70 @@ using pqll = priority_queue<ll>;
 using pqvi = priority_queue<vi>;
 using pqvll = priority_queue<vll>;
 
-ll get_e(ll i, ll x) {
-	if (i == 1) {
-		return 5 * x;
+bool toab(const string &s, const vi &ab, const bool isNode[]) {
+	bool toa = false, tob = false;
+	repv(j, ab) {
+		if (!isNode[ab[j]]) {
+			continue;
+		}
+		if (s[ab[j] - 1] == 'A') {
+			toa = true;
+			if (tob) {
+				return true;
+			}
+		}
+		if (s[ab[j] - 1] == 'B') {
+			tob = true;
+			if (toa) {
+				return true;
+			}
+		}
 	}
-	else {
-		return (2*i + 1) * x;
-	}
+	return false;
 }
 
 int main() {
-	vll x, s;
-	ll n, X;
-	cin >> n >> X;
-	x.push_back(0);
-	rep(i, 0, n) {
-		ll xx;
-		cin >> xx;
-		x.push_back(xx);
+	int N, M;
+	cin >> N >> M;
+	string s;
+	cin >> s;
+	vvi ab;
+	ab.resize(N + 1);
+	bool isNode[200001];
+	rep(i, 0, M) {
+		int a, b;
+		cin >> a >> b;
+		ab[a].push_back(b);
+		if (a != b) {
+			ab[b].push_back(a);
+		}
+		isNode[a] = true;
+		isNode[b] = true;
 	}
-	s.push_back(0);
-	rep(i, 1, n) {
-		s.push_back(s[i - 1] + x[i]);
-	}
-	rep(k, 1, n + 1) {
-		rep(i, 1, n/k + 1) {
-			
+	queue<int> q;
+	rep(i, 1, N + 1) {
+		if (isNode[i]) {
+			q.push(i);
+		}
+		while(!q.empty()) {
+			int j = q.front();
+			q.pop();
+			if (!toab(s, ab[j], isNode)) {
+				isNode[j] = false;
+				repv(k, ab[j]) {
+					if (isNode[ab[j][k]]) {
+						q.push(ab[j][k]);
+					}
+				}
+			}
 		}
 	}
+	rep(i, 1, N + 1) {
+		if (isNode[i]) {
+			cout << "Yes" << endl;
+			return 0;
+		}
+	}
+	cout << "No" << endl;
+	return 0;
 }

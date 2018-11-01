@@ -51,15 +51,27 @@ int main() {
 	cin >> s;
 	vvi ab;
 	ab.resize(N + 1);
+	bool check[200001] = {};
+	bool again = false;
 	rep(i, 0, M) {
 		int a, b;
 		cin >> a >> b;
 		ab[min(a,b)].push_back(max(a,b));
+		check[a] = true;
+		check[b] = true;
 	}
-	bool again = true;
+	rep(i, 1, N + 1) {
+		if (check[i]) {
+			again = true;
+		}
+	}
 	while (again) {
+		bool checkn[200001] = {};
 		again = false;
 		rep(i, 1, N + 1) {
+			if (!check[i]) {
+				continue;
+			}
 			bool toab[2] = {false, false};
 			bool fab = false;
 			rep(j, 0, ab[i].size()) {
@@ -101,19 +113,27 @@ int main() {
 				}
 			}
 			if (!fab) {
+				rep(j, 0, ab[i].size()) {
+					checkn[ab[i][j]] = true;
+				}
 				ab[i].resize(0);
 				rep(k, 1, i) {
 					repr(j, ab[k].size(), 0) {
 						if (ab[k][j] == i) {
 							ab[k].erase(begin(ab[k]) + j);
-							again = true;
+							checkn[k] = true;
 						}
 					}
 				}
 			}
 		}
+		rep(i, 1, N + 1) {
+			if (checkn[i]) {
+				again = true;
+			}
+			check[i] = checkn[i];
+		}
 	}
-
 	rep(i, 0, N) {
 		if (ab[i].size() > 0) {
 			cout << "Yes" << endl;

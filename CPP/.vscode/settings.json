@@ -28,6 +28,11 @@
         "tuple": "cpp",
         "utility": "cpp",
         "functional": "cpp",
-        "bitset": "cpp"
+        "bitset": "cpp",
+        "memory": "cpp",
+        "limits": "cpp",
+        "__locale": "cpp",
+        "memory_resource": "cpp",
+        "__mutex_base": "cpp"
     }
 }

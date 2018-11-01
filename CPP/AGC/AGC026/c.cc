@@ -37,39 +37,47 @@ using vvll = vector<vll>;
 using vb = vector<bool>;
 using vvb = vector<vb>;
 using vvvb = vector<vvb>;
-using vpii = vector<pii>;
 using pqi = priority_queue<int>;
 using pqd = priority_queue<double>;
 using pqll = priority_queue<ll>;
 using pqvi = priority_queue<vi>;
 using pqvll = priority_queue<vll>;
 
-ll get_e(ll i, ll x) {
-	if (i == 1) {
-		return 5 * x;
-	}
-	else {
-		return (2*i + 1) * x;
-	}
-}
+map <pss, int> mp;
 
 int main() {
-	vll x, s;
-	ll n, X;
-	cin >> n >> X;
-	x.push_back(0);
-	rep(i, 0, n) {
-		ll xx;
-		cin >> xx;
-		x.push_back(xx);
-	}
-	s.push_back(0);
-	rep(i, 1, n) {
-		s.push_back(s[i - 1] + x[i]);
-	}
-	rep(k, 1, n + 1) {
-		rep(i, 1, n/k + 1) {
-			
+	int n;
+	string s;
+	cin >> n;
+	cin >> s;
+	rep(i, 0, 1<<n) {
+		string s0, s1;
+		rep(j, 0, n) {
+			if (i>>j&1) {
+				s0 += s[j];
+			}
 		}
+		repr(j, n, 0) {
+			if (!(i>>j&1)) {
+				s1 += s[j];
+			}
+		}
+		++mp[pss(s0, s1)];
 	}
+	ll ans = 0;
+	rep(i, 0, 1<<n) {
+		string s0, s1;
+		rep(j, 0, n) {
+			if (i>>j&1) {
+				s0 += s[n + j];
+			}
+		}
+		repr(j, n, 0) {
+			if (!(i>>j&1)) {
+				s1 += s[n + j];
+			}
+		}
+		ans += mp[pss(s1, s0)];
+	}
+	cout << ans << endl;
 }

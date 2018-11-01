@@ -44,32 +44,40 @@ using pqll = priority_queue<ll>;
 using pqvi = priority_queue<vi>;
 using pqvll = priority_queue<vll>;
 
-ll get_e(ll i, ll x) {
-	if (i == 1) {
-		return 5 * x;
+template<class T>
+void accum(vector<vector<T> > &v) {
+	for (signed i(1); i < v.size(); ++i) {
+		for (signed j(1); j < v[0].size(); ++j) {
+			v[i][j] = v[i][j] + v[i][j - 1];
+		}
 	}
-	else {
-		return (2*i + 1) * x;
+	for (signed i(1); i < v.size(); ++i) {
+		for (signed j(1); j < v[0].size(); ++j) {
+			v[j][i] = v[j][i] + v[j - 1][i];
+		}
 	}
 }
 
+
 int main() {
-	vll x, s;
-	ll n, X;
-	cin >> n >> X;
-	x.push_back(0);
-	rep(i, 0, n) {
-		ll xx;
-		cin >> xx;
-		x.push_back(xx);
+	cin.tie(0);
+	ios_base::sync_with_stdio(false);
+	int N, M, Q;
+	cin >> N >> M >> Q;
+	vvi lr(N + 1, vi(N + 1, 0)); 
+	rep(i, 0, M) {
+		int l, r;
+		cin >> l >> r;
+		++lr[l][r];
 	}
-	s.push_back(0);
-	rep(i, 1, n) {
-		s.push_back(s[i - 1] + x[i]);
+	accum(lr);
+	vi a(Q);
+	rep(i, 0, Q) {
+		int p, q;
+		cin >> p >> q;
+		a[i] = lr[q][q] - lr[p-1][q] - lr[q][p-1] + lr[p-1][p-1];
 	}
-	rep(k, 1, n + 1) {
-		rep(i, 1, n/k + 1) {
-			
-		}
+	rep(i, 0, Q) {
+		cout << a[i] << endl;
 	}
 }
