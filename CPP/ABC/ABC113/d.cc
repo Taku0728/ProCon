@@ -16,20 +16,13 @@ int main() {
 	}
 	for (int j = 1; j != H + 1; ++j) {
 		for (int i = 1; i != W + 1; ++i) {
-			dp[i][j] += dp[i-1][j-1] * com[max(0,i-2)] * com[W-i+1];
+			dp[i][j] += dp[i-1][j-1] * com[max(0, i - 3)] * com[max(0, W - i - 1)];
 			dp[i][j] %= mod;
-			dp[i][j] += dp[i][j-1] * com[i-1] * com[W-i];
+			dp[i][j] += dp[i][j-1] * com[max(0, i - 2)] * com[max(0, W - i - 1)];
 			dp[i][j] %= mod;
-			dp[i][j] += dp[i+1][j-1] * com[i] * com[W-i];
+			dp[i][j] += dp[i+1][j-1] * com[max(0, i - 2)] * com[max(0, W - i - 2)];
 			dp[i][j] %= mod;
 		}
-	}
-
-	for (int j = 0; j != H + 1; ++j) {
-		for (int i = 1; i != W + 1; ++i) {
-			cout << dp[i][j] << " ";
-		}
-		cout << endl;
 	}
 	cout << dp[K][H] << endl;
 }

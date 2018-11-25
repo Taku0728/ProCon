@@ -4,6 +4,9 @@
         "iterator": "cpp",
         "utility": "cpp",
         "tuple": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "vector": "cpp",
+        "algorithm": "cpp"
     }
 }

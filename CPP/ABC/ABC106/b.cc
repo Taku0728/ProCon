@@ -1,4 +1,4 @@
-#include <iostream>
+#include <bits/stdc++.h>
 
 #define rep(i, m, n) for (int (i)(m); (i)<(n); ++(i))
 
