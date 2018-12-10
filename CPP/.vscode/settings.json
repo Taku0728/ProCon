@@ -34,5 +34,6 @@
         "__locale": "cpp",
         "memory_resource": "cpp",
         "__mutex_base": "cpp"
-    }
+    },
+    "workbench.panel.defaultLocation": "right",
 }

@@ -25,33 +25,33 @@ int main() {
 	for (int i = 0; i != Q; ++i) {
 		int k;
 		cin >> k;
-		vk.push_back(k-1);
+		vk.push_back(k - 1);
 		va.push_back(0);
 	}
 	for (int i = 0; i != Q; ++i) {
 		int d = 0, m = 0, dm = 0;
 		for (int j = 0; j != vk[i]; ++j) {
-			if (s[j] == 'D') ++d;
-			if (s[j] == 'M') {
+			if (s[j] == 'C') va[i] += dm;
+			else if (s[j] == 'D') ++d;
+			else if (s[j] == 'M') {
 				++m;
 				dm += d;
 			}
-			if (s[j] == 'C') va[i] += dm;
 		}
 		for (int j = 0; j + vk[i] < N; ++j) {
-			if (s[j + vk[i]] == 'C') {
-				va[i] += dm;
+			if (s[j + vk[i]] == 'C') va[i] += dm;
+			else if (s[j + vk[i]] == 'D') ++d;			
+			else if (s[j + vk[i]] == 'M') {
+				++m;
+				dm += d;
 			}
+
 			if (s[j] == 'D') {
 				--d;
 				dm -= m;
 			}
-			if (s[j] == 'M') --m;
-			if (s[j + vk[i]] == 'D') ++d;
-			if (s[j + vk[i]] == 'M') {
-				++m;
-				dm += d;
-			}
+			else if (s[j] == 'M') --m;
+
 		}
 	}
 	for (auto a : va) {
